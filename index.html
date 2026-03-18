@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nikhil | Web Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            max-width: 100%;
+            outline: 1px solid red;
+        }
+
+        body {
+            background: radial-gradient(circle at top, rgba(0, 247, 255, 0.1), transparent 40%),
+                radial-gradient(circle at bottom, rgba(138, 46, 255, 0.1), transparent 40%),
+                #050505;
+            color: #fff;
+            scroll-behavior: smooth;
+            background-size: cover;
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+
+        section {
+            padding: 80px 20px
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: auto
+        }
+
+        h1,
+        h2 {
+            margin-bottom: 20px
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background: linear-gradient(45deg, #00f7ff, #8a2eff);
+            border: none;
+            border-radius: 30px;
+            color: #000;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 15px;
+            transition: .3s
+        }
+
+        .btn:hover {
+            box-shadow: 0 0 20px #00f7ff
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px
+        }
+
+        .card {
+            background: #0f0f0f;
+            padding: 20px;
+            border-radius: 15px;
+            transition: .3s
+        }
+
+        .card:hover {
+            box-shadow: 0 0 20px #8a2eff
+        }
+
+        .hero {
+            text-align: center;
+            padding-top: 120px
+        }
+
+        .hero h1 {
+            font-size: 42px
+        }
+
+        img {
+            width: 100%;
+            border-radius: 10px
+        }
+
+        .progress {
+            background: #222;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 10px 0
+        }
+
+        .progress div {
+            height: 10px;
+            background: #00f7ff
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px
+        }
+
+        #loader {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999
+        }
+
+        .loader-text {
+            color: #00f7ff;
+            font-size: 24px;
+            animation: blink 1s infinite
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0.3
+            }
+        }
+
+        .whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25D366;
+            color: #fff;
+            padding: 15px;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 20px
+        }
+
+        html,
+        body {
+            height: 100%
+        }
+
+        body {
+            display: flex;
+            flex-direction: column
+        }
+
+        main {
+            flex: 1
+        }
+
+        footer {
+            margin-top: auto
+        }
+
+        footer a {
+            transition: 0.3s
+        }
+
+        footer a:hover {
+            color: #00f7ff;
+            text-shadow: 0 0 10px #00f7ff
+        }
+
+        .error {
+            box-shadow: 0 0 8px red
+        }
+
+        .success {
+            color: #00f7ff
+        }
+
+        .error-text {
+            color: #ff4d4d
+        }
+
+
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            width: 30px;
+            height: 22px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .menu-toggle span {
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background: #00f7ff;
+            left: 0;
+            transition: 0.3s;
+        }
+
+        .menu-toggle span:nth-child(1) {
+            top: 0
+        }
+
+        .menu-toggle span:nth-child(2) {
+            top: 9px
+        }
+
+        .menu-toggle span:nth-child(3) {
+            top: 18px
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg);
+            top: 9px
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg);
+            top: 9px
+        }
+
+        @media(max-width:768px) {
+            .menu-toggle {
+                display: block;
+                color: #00f7ff
+            }
+
+            nav {
+                position: absolute;
+                top: 60px;
+                right: 20px;
+                background: #0f0f0f;
+                flex-direction: column;
+                padding: 15px;
+                border-radius: 10px;
+                display: none;
+                overflow: hidden;
+            }
+
+            nav.active {
+                display: flex
+            }
+
+            nav a {
+                margin: 10px 0;
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            nav.active a {
+                animation: slideDown 0.4s forwards;
+            }
+
+            nav.active a:nth-child(1) {
+                animation-delay: 0.1s
+            }
+
+            nav.active a:nth-child(2) {
+                animation-delay: 0.2s
+            }
+
+            nav.active a:nth-child(3) {
+                animation-delay: 0.3s
+            }
+
+        }
+
+        @keyframes slideDown {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Overlay */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 900;
+            display: none;
+        }
+
+        .menu-overlay.active {
+            display: block;
+        }
+
+        nav {
+            position: absolute;
+            top: 60px;
+            right: 0;
+            left: 0;
+            background: #0f0f0f;
+            flex-direction: column;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+            margin: auto;
+            width: fit-content;
+
+        }
+
+        nav.active {
+            display: flex
+        }
+
+        nav a {
+            margin: 10px 0
+        }
+    </style>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('nav');
+            const toggle = document.querySelector('.menu-toggle');
+            const overlay = document.querySelector('.menu-overlay');
+
+            nav.classList.toggle('active');
+            toggle.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
+
+        // Close menu on link click
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('nav').classList.remove('active');
+                document.querySelector('.menu-toggle').classList.remove('active');
+                document.querySelector('.menu-overlay').classList.remove('active');
+            })
+        });
+
+        // Close menu on link click (mobile UX)
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('nav').classList.remove('active');
+                document.querySelector('.menu-toggle').classList.remove('active');
+            })
+        });
+    </script>
+
+    <script>
+        function validateForm() {
+            const name = document.getElementById('name');
+            const email = document.getElementById('email');
+            const message = document.getElementById('message');
+            const msg = document.getElementById('formMsg');
+
+            let valid = true;
+
+            [name, email, message].forEach(el => el.classList.remove('error'));
+
+            if (name.value.trim() === "") {
+                name.classList.add('error');
+                valid = false;
+            }
+
+            const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+            if (!email.value.match(emailPattern)) {
+                email.classList.add('error');
+                valid = false;
+            }
+
+            if (message.value.trim().length < 10) {
+                message.classList.add('error');
+                valid = false;
+            }
+
+            if (!valid) {
+                msg.innerText = "⚠️ Please fill all fields correctly";
+                msg.className = "error-text";
+            } else {
+                sendEmail(name.value, email.value, message.value);
+            }
+        }
+
+        // EMAILJS INTEGRATION
+        function sendEmail(name, email, message) {
+            emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+                from_name: name,
+                from_email: email,
+                message: message
+            }, "YOUR_PUBLIC_KEY")
+                .then(() => {
+                    document.getElementById('formMsg').innerText = "✅ Message sent successfully!";
+                    document.getElementById('formMsg').className = "success";
+
+                    document.getElementById('name').value = "";
+                    document.getElementById('email').value = "";
+                    document.getElementById('message').value = "";
+                })
+                .catch(() => {
+                    document.getElementById('formMsg').innerText = "❌ Failed to send message";
+                    document.getElementById('formMsg').className = "error-text";
+                });
+        }
+
+        const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+        if (!email.value.match(emailPattern)) {
+            email.classList.add('error');
+            valid = false;
+        }
+
+        if (message.value.trim().length < 10) {
+            message.classList.add('error');
+            valid = false;
+        }
+
+        if (!valid) {
+            msg.innerText = "⚠️ Please fill all fields correctly";
+            msg.className = "error-text";
+        } else {
+            msg.innerText = "✅ Message sent successfully!";
+            msg.className = "success";
+
+            // reset form
+            name.value = "";
+            email.value = "";
+            message.value = "";
+        }
+
+    </script>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="logo">Nikhil.dev</div>
+            <nav>
+                <a href="#">Home</a>
+                <a href="#portfolio">Portfolio</a>
+                <a href="#contact">Contact</a>
+            </nav>
+            <a href="#contact" class="nav-btn">Hire Me</a>
+        </div>
+    </header>
+
+    <!-- Backdrop Overlay -->
+    <div class="menu-overlay" onclick="toggleMenu()"></div>
+
+    <style>
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 20px;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: 600;
+            color: #00f7ff;
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #ccc;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #00f7ff;
+            text-shadow: 0 0 10px #00f7ff;
+        }
+
+        .nav-btn {
+            padding: 8px 18px;
+            border-radius: 20px;
+            background: linear-gradient(45deg, #00f7ff, #8a2eff);
+            color: #000;
+            text-decoration: none;
+        }
+
+        @media(max-width:768px) {
+            nav {
+                display: none
+            }
+        }
+    </style>
+
+    <div id="loader">
+        <div class="loader-text">Loading...</div>
+    </div>
+
+    <section class="hero" data-aos="fade-up">
+        <div class="container">
+            <h1>Nikhil - Web Developer</h1>
+            <p>Helping businesses grow with modern web development</p>
+            <a href="#contact" class="btn">Hire Me</a>
+        </div>
+    </section>
+
+    <section data-aos="fade-right">
+        <div class="container">
+            <h2>Why Choose Me</h2>
+            <div class="grid">
+                <div class="card">Fast Delivery</div>
+                <div class="card">Premium Design</div>
+                <div class="card">SEO Friendly</div>
+                <div class="card">Client Satisfaction</div>
+            </div>
+        </div>
+    </section>
+
+    <section data-aos="zoom-in">
+        <div class="container">
+            <h2>Skills</h2>
+            <p>HTML</p>
+            <div class="progress">
+                <div style="width:90%"></div>
+            </div>
+            <p>CSS</p>
+            <div class="progress">
+                <div style="width:85%"></div>
+            </div>
+            <p>JavaScript</p>
+            <div class="progress">
+                <div style="width:80%"></div>
+            </div>
+            <p>React</p>
+            <div class="progress">
+                <div style="width:75%"></div>
+            </div>
+        </div>
+    </section>
+
+    <section data-aos="fade-up">
+        <div class="container">
+            <h2>Portfolio</h2>
+            <div class="grid">
+                <div class="card"><img src="https://picsum.photos/300/200"><a href="#" class="btn">Live</a></div>
+                <div class="card"><img src="https://picsum.photos/301/200"><a href="#" class="btn">Live</a></div>
+                <div class="card"><img src="https://picsum.photos/302/200"><a href="#" class="btn">Live</a></div>
+            </div>
+        </div>
+    </section>
+
+    <section data-aos="fade-up">
+        <div class="container">
+            <h2>⭐ Client Reviews</h2>
+
+            <div class="carousel">
+                <div class="carousel-track" id="carouselTrack">
+
+                    <div class="carousel-card">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg">
+                        <h3>Rahul Sharma</h3>
+                        <div class="stars">★★★★★</div>
+                        <p>"Amazing experience working with Nikhil. The website was fast and modern."</p>
+                    </div>
+
+                    <div class="carousel-card">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg">
+                        <h3>Anjali Verma</h3>
+                        <div class="stars">★★★★★</div>
+                        <p>"Very professional and quick delivery. Highly recommended!"</p>
+                    </div>
+
+                    <div class="carousel-card">
+                        <img src="https://randomuser.me/api/portraits/men/75.jpg">
+                        <h3>Amit Patel</h3>
+                        <div class="stars">★★★★★</div>
+                        <p>"Great communication and support. Loved the final result."</p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <style>
+        .carousel {
+            overflow: hidden;
+            position: relative;
+            max-width: 100%;
+        }
+
+        .carousel-track {
+            display: flex;
+            gap: 20px;
+            animation: slide 12s infinite;
+            width: max-content;
+        }
+
+        .carousel-card {
+            min-width: 300px;
+            background: #0f0f0f;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center
+        }
+
+        .carousel-card img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin: auto
+        }
+
+        .stars {
+            color: #FFD700;
+            margin: 8px 0
+        }
+
+        @keyframes slide {
+            0% {
+                transform: translateX(0)
+            }
+
+            33% {
+                transform: translateX(-320px)
+            }
+
+            66% {
+                transform: translateX(-640px)
+            }
+
+            100% {
+                transform: translateX(0)
+            }
+        }
+    </style>
+
+    <section data-aos="fade-up">
+        <div class="container">
+            <h2>🎥 About Me (Intro Video)</h2>
+
+            <div class="about-video">
+
+                <div class="about-text">
+                    <p>
+                        Hi, I'm <b>Nikhil</b> — a passionate web developer who helps businesses, startups, and
+                        individuals build modern, high-performance websites that not only look stunning but also deliver
+                        real results.
+                    </p>
+
+                    <p>
+                        I specialize in creating <b>clean UI, responsive layouts, and fast-loading websites</b> using
+                        technologies like HTML, CSS, JavaScript, React, PHP, and SQL. My goal is not just to design
+                        websites, but to solve real business problems and improve online presence.
+                    </p>
+
+                    <p>
+                        I have experience working on:
+                    </p>
+
+                    <ul style="margin:10px 0 20px 20px; color:#ccc">
+                        <li>✔ Portfolio Websites</li>
+                        <li>✔ Business Websites</li>
+                        <li>✔ E-commerce Stores</li>
+                        <li>✔ Landing Pages (high-converting)</li>
+                        <li>✔ Custom Web Applications</li>
+                    </ul>
+
+                    <p>
+                        What makes me different is my mindset — I treat every project like my own product. I focus on
+                        <b>performance, user experience, and conversion</b> so your website doesn’t just look good, it
+                        works for your business.
+                    </p>
+
+                    <p>
+                        I believe in <b>clear communication, fast delivery, and long-term relationships</b>. I stay
+                        connected with my clients even after project completion to ensure everything runs smoothly.
+                    </p>
+
+                    <p>
+                        👉 My mission is simple: <b>Build websites that help you grow, attract customers, and succeed
+                            online.</b>
+                    </p>
+
+                    <a href="#contact" class="btn">Let’s Work Together</a>
+                </div>
+
+                <div class="about-video-box">
+                    <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Intro Video" allowfullscreen></iframe>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <style>
+        .about-video {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 30px
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 280px
+        }
+
+        .about-video-box {
+            flex: 1;
+            min-width: 280px;
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 25px #00f7ff
+        }
+
+        .about-video-box iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none
+        }
+
+        @media(max-width:768px) {
+            .about-video {
+                flex-direction: column
+            }
+        }
+    </style>
+
+    <style>
+        .contact-box {
+            display: flex;
+            gap: 40px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 20px rgba(0, 247, 255, 0.2);
+        }
+
+        .contact-info {
+            flex: 1;
+            min-width: 250px
+        }
+
+        .contact-info h3 {
+            margin-bottom: 10px
+        }
+
+        .contact-info p {
+            color: #ccc;
+            margin: 6px 0
+        }
+
+        .contact-form {
+            flex: 1;
+            min-width: 250px
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 10px;
+            background: #111;
+            color: #fff;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            box-shadow: 0 0 10px #00f7ff;
+        }
+
+        .contact-form textarea {
+            min-height: 120px;
+            resize: none
+        }
+
+        @media(max-width:768px) {
+            .contact-box {
+                flex-direction: column
+            }
+        }
+    </style>
+
+    <a href="https://wa.me/919839507418?text=Hi%20Nikhil,%20I%20want%20a%20website" class="whatsapp">💬</a>
+
+    <!-- Floating Chat Popup -->
+    <div id="chatPopup" class="chat-popup">
+        <div class="chat-header">
+            🤖 Nikhil Bot
+            <span class="chat-close" onclick="closeChat()">✖</span>
+        </div>
+
+        <div class="chat-body" id="chatBody">
+            <div class="chat-msg bot">Typing...</div>
+        </div>
+
+        <a href="https://wa.me/919839507418?text=Hi%20Nikhil,%20I%20want%20a%20website" class="chat-btn">Get Quote</a>
+        <a href="#pricing" class="chat-btn alt">View Pricing</a>
+    </div>
+
+    <style>
+        .chat-popup {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background: #0f0f0f;
+            padding: 15px;
+            border-radius: 15px;
+            width: 250px;
+            box-shadow: 0 0 20px #00f7ff;
+            display: none;
+            z-index: 999;
+            animation: fadeIn .5s ease
+        }
+
+        .chat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #00f7ff;
+            font-weight: 600
+        }
+
+        .chat-close {
+            cursor: pointer
+        }
+
+        .chat-body {
+            margin: 10px 0
+        }
+
+        .chat-msg {
+            padding: 8px 12px;
+            border-radius: 10px;
+            margin-bottom: 8px;
+            font-size: 13px
+        }
+
+        .chat-msg.bot {
+            background: #1a1a1a;
+            color: #ccc
+        }
+
+        .typing {
+            display: inline-block;
+            border-right: 2px solid #00f7ff;
+            white-space: nowrap;
+            overflow: hidden
+        }
+
+        .chat-btn {
+            display: block;
+            text-align: center;
+            margin-top: 8px;
+            padding: 8px;
+            border-radius: 20px;
+            background: linear-gradient(45deg, #00f7ff, #8a2eff);
+            color: #000;
+            text-decoration: none
+        }
+
+        .chat-btn.alt {
+            background: #222;
+            color: #fff
+        }
+    </style>
+
+    <script>
+        setTimeout(() => {
+            document.getElementById('chatPopup').style.display = 'block';
+            startTyping();
+        }, 10000);
+
+        function closeChat() {
+            document.getElementById('chatPopup').style.display = 'none';
+        }
+
+        function playSound() {
+            const audio = new Audio('https://notificationsounds.com/storage/sounds/file-sounds-1150-pristine.mp3');
+            audio.volume = 0.5;
+            audio.play();
+        }
+
+        function startTyping() {
+            const text = "Hi 👋 I can help you build a modern website. What do you need?";
+            const container = document.getElementById('chatBody');
+            container.innerHTML = '';
+
+            let i = 0;
+            const msg = document.createElement('div');
+            msg.className = 'chat-msg bot typing';
+            container.appendChild(msg);
+
+            function type() {
+                if (i < text.length) {
+                    msg.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, 30);
+                } else {
+                    msg.classList.remove('typing');
+                    playSound(); // 🔔 sound when message complete
+                }
+            }
+            type();
+        }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        AOS.init();
+        window.onload = () => { document.getElementById('loader').style.display = 'none' }
+
+        // GSAP Infinite Smooth Carousel (No Jump)
+        const track = document.getElementById('carouselTrack');
+
+        // Duplicate content for seamless loop
+        track.innerHTML += track.innerHTML;
+
+        const totalWidth = track.scrollWidth / 2;
+
+        let tween = gsap.to(track, {
+            x: -totalWidth,
+            duration: 20,
+            ease: "none",
+            repeat: -1
+        });
+
+        // Pause on hover (entire carousel area)
+        const carousel = document.querySelector('.carousel');
+        carousel.addEventListener('mouseenter', () => tween.pause());
+        carousel.addEventListener('mouseleave', () => tween.resume());
+
+        // Drag / Swipe Control
+        let isDown = false;
+        let startX;
+        let currentX = 0;
+
+        track.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX;
+            tween.pause();
+        });
+
+        track.addEventListener('mouseleave', () => {
+            isDown = false;
+            tween.resume();
+        });
+
+        track.addEventListener('mouseup', () => {
+            isDown = false;
+            tween.resume();
+        });
+
+        track.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            const walk = (e.pageX - startX);
+            gsap.set(track, { x: `+=${walk}` });
+            startX = e.pageX;
+        });
+
+        // Touch support
+        track.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].pageX;
+            tween.pause();
+        });
+
+        track.addEventListener('touchmove', (e) => {
+            const walk = (e.touches[0].pageX - startX);
+            gsap.set(track, { x: `+=${walk}` });
+            startX = e.touches[0].pageX;
+        });
+
+        track.addEventListener('touchend', () => {
+            tween.resume();
+        });
+    </script>
+
+
+
+    <section data-aos="fade-up">
+        <div class="container">
+            <h2>🔥 Get Your Website in 3 Simple Steps</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>1. Share Your Idea</h3>
+                    <p>Tell me your requirements or business goal.</p>
+                </div>
+                <div class="card">
+                    <h3>2. I Build It</h3>
+                    <p>I design & develop your premium website.</p>
+                </div>
+                <div class="card">
+                    <h3>3. Launch & Grow</h3>
+                    <p>You go live and start getting results.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section data-aos="zoom-in">
+        <div class="container">
+            <h2>💼 Packages (Fiverr Style)</h2>
+            <div class="grid">
+                <div class="card">
+                    <h3>Basic</h3>
+                    <p>1 Page Website</p>
+                    <p>Responsive Design</p>
+                    <p>Delivery: 3 Days</p>
+                    <p>₹4,999</p>
+                    <a href="#contact" class="btn">Order Now</a>
+                </div>
+                <div class="card">
+                    <h3>Standard</h3>
+                    <p>5 Page Website</p>
+                    <p>Premium UI + SEO</p>
+                    <p>Delivery: 5 Days</p>
+                    <p>₹9,999</p>
+                    <a href="#contact" class="btn">Order Now</a>
+                </div>
+                <div class="card">
+                    <h3>Premium</h3>
+                    <p>Full Website + Admin Panel</p>
+                    <p>Advanced Features</p>
+                    <p>Delivery: 7 Days</p>
+                    <p>₹19,999</p>
+                    <a href="#contact" class="btn">Order Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section data-aos="fade-left">
+        <div class="container">
+            <h2>Work Process (Step-by-Step)</h2>
+            <div class="grid">
+
+                <div class="card">
+                    <h3>1. Discussion</h3>
+                    <p>We start with a detailed conversation about your business, goals, target audience, and design
+                        preferences. I gather all requirements to fully understand your vision.</p>
+                </div>
+
+                <div class="card">
+                    <h3>2. Research & Planning</h3>
+                    <p>I analyze competitors, choose the right tech stack, and create a clear structure (wireframe) for
+                        your website to ensure best performance and user experience.</p>
+                </div>
+
+                <div class="card">
+                    <h3>3. UI/UX Design</h3>
+                    <p>I design a modern, premium-looking interface with clean layout, colors, and typography focused on
+                        conversion and user engagement.</p>
+                </div>
+
+                <div class="card">
+                    <h3>4. Development</h3>
+                    <p>Your website is built using clean, optimized code. It will be fully responsive, fast-loading, and
+                        compatible across all devices.</p>
+                </div>
+
+                <div class="card">
+                    <h3>5. Testing & Optimization</h3>
+                    <p>I test your website on multiple devices and browsers. Speed, SEO basics, and performance are
+                        optimized before delivery.</p>
+                </div>
+
+                <div class="card">
+                    <h3>6. Delivery & Revisions</h3>
+                    <p>I deliver the final website and make any required revisions to ensure you are 100% satisfied with
+                        the result.</p>
+                </div>
+
+                <div class="card">
+                    <h3>7. Launch</h3>
+                    <p>I help you deploy your website on hosting (GitHub, Netlify, or custom server) and make it live
+                        for the world.</p>
+                </div>
+
+                <div class="card">
+                    <h3>8. Support & Maintenance</h3>
+                    <p>Even after delivery, I provide support for updates, bug fixes, and improvements to help your
+                        business grow.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" data-aos="fade-up">
+        <div class="container">
+            <h2>📞 Contact Me</h2>
+
+            <div class="contact-box">
+
+                <div class="contact-info">
+                    <h3>Let’s Build Something Amazing 🚀</h3>
+                    <p>Have a project in mind? Fill the form or contact me directly.</p>
+                    <p>📧 your@email.com</p>
+                    <p>📱 +91 XXXXXXXX</p>
+                    <p>📍 India</p>
+                </div>
+
+                <div class="contact-form">
+                    <input type="text" id="name" placeholder="Your Name">
+                    <input type="email" id="email" placeholder="Your Email">
+                    <textarea id="message" placeholder="Tell me about your project..."></textarea>
+                    <button class="btn" onclick="validateForm()">Send Message</button>
+                    <p id="formMsg" style="margin-top:10px;font-size:14px"></p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section data-aos="fade-up">
+        <div class="container">
+            <h2>🎯 Why Clients Hire Me</h2>
+            <div class="grid">
+
+                <div class="card">
+                    <div style="color:#FFD700;font-size:18px;margin-bottom:8px">★★★★★</div>
+                    <h3>💬 Clear Communication</h3>
+                    <p><b>Problem:</b> Client confused about project updates</p>
+                    <p><b>Solution:</b> Provided regular updates & clear communication</p>
+                    <p><b>Result:</b> Smooth workflow & happy client</p>
+                </div>
+
+                <div class="card">
+                    <div style="color:#FFD700;font-size:18px;margin-bottom:8px">★★★★★</div>
+                    <h3>⚡ Fast Delivery</h3>
+                    <p><b>Problem:</b> Client needed urgent website</p>
+                    <p><b>Solution:</b> Delivered project before deadline</p>
+                    <p><b>Result:</b> Client launched business early</p>
+                </div>
+
+                <div class="card">
+                    <div style="color:#FFD700;font-size:18px;margin-bottom:8px">★★★★★</div>
+                    <h3>🎨 Premium Design</h3>
+                    <p><b>Problem:</b> Outdated website UI</p>
+                    <p><b>Solution:</b> Redesigned with modern UI</p>
+                    <p><b>Result:</b> Increased user engagement</p>
+                </div>
+
+                <div class="card">
+                    <div style="color:#FFD700;font-size:18px;margin-bottom:8px">★★★★★</div>
+                    <h3>📱 Fully Responsive</h3>
+                    <p><b>Problem:</b> Site not working on mobile</p>
+                    <p><b>Solution:</b> Built fully responsive layout</p>
+                    <p><b>Result:</b> Better mobile user experience</p>
+                </div>
+
+                <div class="card">
+                    <div style="color:#FFD700;font-size:18px;margin-bottom:8px">★★★★★</div>
+                    <h3>🚀 Performance Focused</h3>
+                    <p><b>Problem:</b> Slow website loading</p>
+                    <p><b>Solution:</b> Optimized code & assets</p>
+                    <p><b>Result:</b> Faster load time & better SEO</p>
+                </div>
+
+                <div class="card">
+                    <div style="color:#FFD700;font-size:18px;margin-bottom:8px">★★★★★</div>
+                    <h3>🔄 Unlimited Revisions</h3>
+                    <p><b>Problem:</b> Client unsure about final design</p>
+                    <p><b>Solution:</b> Provided multiple revisions</p>
+                    <p><b>Result:</b> Perfect final output</p>
+                </div>
+
+                <div class="card">
+                    <div style="color:#FFD700;font-size:18px;margin-bottom:8px">★★★★★</div>
+                    <h3>🧠 Problem Solver</h3>
+                    <p><b>Problem:</b> Client had low conversions</p>
+                    <p><b>Solution:</b> Improved UX & CTA</p>
+                    <p><b>Result:</b> Higher conversion rate</p>
+                </div>
+
+                <div class="card">
+                    <div style="color:#FFD700;font-size:18px;margin-bottom:8px">★★★★★</div>
+                    <h3>🤝 Long-Term Support</h3>
+                    <p><b>Problem:</b> Client needed ongoing updates</p>
+                    <p><b>Solution:</b> Provided continuous support</p>
+                    <p><b>Result:</b> Long-term working relationship</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section data-aos="fade-up">
+        <div class="container" style="text-align:center">
+            <h2>🚀 Ready to Start?</h2>
+            <p>Let's build something amazing together</p>
+            <a href="#contact" class="btn">Start Project</a>
+            <a href="https://wa.me/91XXXXXXXXXX" class="btn">Chat on WhatsApp</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-container">
+
+            <div class="footer-col">
+                <h3>Nikhil</h3>
+                <p>Helping businesses grow with modern, high-performance websites and premium UI design.</p>
+            </div>
+
+            <div class="footer-col">
+                <h3>Services</h3>
+                <p>✔ Website Development</p>
+                <p>✔ UI/UX Design</p>
+                <p>✔ E-commerce</p>
+                <p>✔ SEO Optimization</p>
+                <p>✔ Maintenance</p>
+            </div>
+
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <p><a href="#">Home</a></p>
+                <p><a href="#">Portfolio</a></p>
+                <p><a href="#">Services</a></p>
+                <p><a href="#contact">Contact</a></p>
+            </div>
+
+            <div class="footer-col">
+                <h3>Contact</h3>
+                <p>📧 your@email.com</p>
+                <p>📱 +91 XXXXXXXX</p>
+                <p>📍 India</p>
+            </div>
+
+            <div class="footer-col">
+                <h3>Follow Me</h3>
+                <p><a href="#">GitHub</a></p>
+                <p><a href="#">LinkedIn</a></p>
+                <p><a href="#">Instagram</a></p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Nikhil | All Rights Reserved | Designed with ❤️</p>
+        </div>
+    </footer>
+
+    <style>
+        .footer {
+            background: #0a0a0a;
+            padding: 60px 20px;
+            margin-top: 40px
+        }
+
+        .footer-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+            max-width: 1100px;
+            margin: auto
+        }
+
+        .footer-col {
+            flex: 1 1 180px;
+            min-width: 180px
+        }
+
+        .footer-col h3 {
+            margin-bottom: 15px
+        }
+
+        .footer-col p {
+            margin: 6px 0;
+            color: #ccc
+        }
+
+        .footer-col a {
+            color: #ccc;
+            text-decoration: none
+        }
+
+        .footer-col a:hover {
+            color: #00f7ff;
+            text-shadow: 0 0 10px #00f7ff
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 40px;
+            border-top: 1px solid #222;
+            padding-top: 20px;
+            color: #aaa
+        }
+    </style>
+
+</body>
+
+</html>
